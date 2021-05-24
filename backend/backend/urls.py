@@ -15,7 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from rest_framework import routers
+from api.views import CustomerViewSet
+from api.views import randomize_customer
+
+router = routers.SimpleRouter()
+router.register(r'customers', CustomerViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('randomize-customer/', randomize_customer),
 ]
+
+urlpatterns += router.urls

@@ -1,4 +1,15 @@
-from django.contrib.auth.models import User, Group
 from rest_framework import serializers
+from api.models import Customer
 
-# Create your serializers here
+class CustomerSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Customer
+        fields = '__all__'
+
+
+class SetHighestPrioritySerializer(CustomerSerializer):
+
+    def update(self, instance, validated_data):
+        instance.priority = Customer.HIGHEST
+        return instance

@@ -44,6 +44,5 @@ class Priority
 class Customer
     priority = ForeignKey
 
-This would allow end user to not only assign priorities but create their own
-and value heirarchy
+This would allow end user to not only assign priorities but create their own priorit system with their specified value heirarchy
 """
