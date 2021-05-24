@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 body {
-  background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+  background-image: linear-gradient(110deg, #f6d364 0%, #fda099 100%);
   color: white;
   font-family: "Poppins", sans-serif;
   min-height: 100vh;
@@ -27,16 +27,19 @@ form button {
   border: none;
   background: white;
 }
-form button {
-  color: #ff6f47;
+
+.customer-button {
+  color: #ff6f44;
   background: #f7fffe;
   cursor: pointer;
   transition: all 0.3s ease;
 }
+
 form button:hover {
-  background: #ff6f47;
+  background: #ff6f44;
   color: white;
 }
+
 .customer-container {
   display: flex;
   justify-content: center;
@@ -67,7 +70,7 @@ form button:hover {
 
 .trash-btn,
 .complete-btn {
-  background: #ff6f47;
+  background: #ff6f44;
   color: white;
   border: none;
   padding: 1rem;
@@ -115,7 +118,7 @@ select {
   overflow: hidden;
 }
 select {
-  color: #ff6f47;
+  color: #ff6f44;
   font-family: "Poppins", sans-serif;
   cursor: pointer;
   width: 12rem;
@@ -127,13 +130,37 @@ select {
   top: 0;
   right: 0;
   padding: 1rem;
-  background: #ff6f47;
+  background: #ff6f44;
   cursor: pointer;
   pointer-events: none;
 }
-/* Transition */
-/*
-.select:hover::after {
-  transform: scale(1.5);
+
+.randomize-container {
+  height: 200px;
+  position: relative;
 }
-*/
+
+.randomize-customer {
+    background:    #25cd88;
+    background:    linear-gradient(#25cd88, #f1f75f);
+    padding:       20px 45px;
+    color:         #ffffff;
+    display:       inline-block;
+    font:          normal bold 26px/1 "Open Sans", sans-serif;
+    text-align:    center;
+    margin-left:   100%;
+}
+
+form input, form button {
+    margin-right: 10px;
+    margin-left: 10px;
+
+}
+
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}

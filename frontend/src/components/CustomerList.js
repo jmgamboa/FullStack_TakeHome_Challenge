@@ -7,14 +7,8 @@ class CustomerList extends Component {
     state = {customers:[]};
 
     async componentDidMount() {
-        let result = await axios.get(
-            "http://localhost:8000/customers/",{
-                headers: {'Content-Type': 'application/json'
-            }
-        });
+        let result = await axios.get("http://localhost:8000/customers/");
         this.setState({customers:result.data})
-        console.log(result)
-
     }
 
     render() {
