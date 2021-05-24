@@ -12,7 +12,7 @@ class App extends Component {
     return (
       <div className="App">
           <header>
-              <h1> Customer List </h1>
+              <h1> Customers </h1>
           </header>
           <CustomerForm/>
           <CustomerList/>

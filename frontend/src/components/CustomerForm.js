@@ -4,42 +4,41 @@ import axios from 'axios';
 
 class CustomerForm extends Component {
 
-  constructor(props) {
-    super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+    constructor(props) {
+        super(props);
+        this.state = {
+            name: '',
+            company: '',
+            priority: 1
+        }
+    }
 
-    handleSubmit(event) {
-        console.log('HERE')
+    onChange(e) {
+        this.setState({
+            [e.target.className]: e.target.value
+        })
+    }
+
+    async onSubmit(e) {
         event.preventDefault();
         const data = {
           name: this.state.name,
-          compay: this.state.company,
+          company: this.state.company,
           priority: this.state.priority,
         };
 
-        // const article = { title: 'React POST Request Example' };
-        // axios.post('https://reqres.in/invalid-url', article)
-        //     .then(response => this.setState({ articleId: response.data.id }))
-        //     .catch(error => {
-        //         this.setState({ errorMessage: error.message });
-        //         console.error('There was an error!', error);
-        //     });
+        let response = await axios.post("http://localhost:8000/customers/", data)
+        alert(`${this.state.name} was added`)
     }
 
-
-    onChange(e) {
-        console.log('onc hange')
-        this.setState({[e.target.name]: e.target.value})
-    }
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
-                <input type="text" placeholder='Name' className="name" onChange={e => this.onChange(e)} />
-                <input type="text" placeholder='Company' className="company"onChange={e => this.onChange(e)}  />
-                <label for="priority">Priority:</label>
-                <select id="priority" name="priority" onChange={e => this.onChange(e)} >
+            <form onSubmit={this.onSubmit.bind(this)}>
+                <input value={this.state.name} type="text" placeholder='Name' className="name" onChange={this.onChange.bind(this)} />
+                <input value={this.state.company} type="text" placeholder='Company' className="company" onChange={this.onChange.bind(this)} />
+                <label>Priority:</label>
+                <select value={this.state.priority} className="priority" id="priority" name="priority" onChange={this.onChange.bind(this)} >
                     <option value="1">Highest</option>
                     <option value="2">High</option>
                     <option value="3">Low</option>
