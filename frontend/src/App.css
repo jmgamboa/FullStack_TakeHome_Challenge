@@ -164,3 +164,11 @@ form input, form button {
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
 }
+
+.delete {
+    background: #f7b7f2;
+}
+
+ul {
+    padding-bottom: 20px;
+}
