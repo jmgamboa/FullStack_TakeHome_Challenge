@@ -26,9 +26,6 @@ SECRET_KEY = 'our-not-so-secret-secret-key'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -41,9 +38,13 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_filters',
     'api',
+    'corsheaders',
 ]
 
+
+
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -128,11 +129,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 DEBUG = json.loads(os.getenv('DEBUG', 'true'))
-ALLOWED_HOSTS = json.loads(os.environ['ALLOWED_HOSTS']) if os.getenv('ALLOWED_HOSTS') else ['localhost']
+# ALLOWED_HOSTS = json.loads(os.environ['ALLOWED_HOSTS']) if os.getenv('ALLOWED_HOSTS') else ['localhost']
 DEVELOPMENT = json.loads(os.getenv('DEBUG', 'false'))
 
 # we whitelist localhost:3000 because that's where frontend will be served
-CORS_ORIGIN_WHITELIST = (
-    'http://localhost:3000/',
-    'http://0.0.0.0:3000/',
-)
+CORS_ALLOW_HEADERS = ['*']
+ALLOWED_HOSTS=['*']
+CORS_ORIGIN_ALLOW_ALL = True
+

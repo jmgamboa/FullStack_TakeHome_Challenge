@@ -32,6 +32,11 @@ class Customer(models.Model):
     objects = CustomerManager()
 
 
+    def set_highest(self):
+        self.priority = self.HIGHEST
+        self.save()
+
+
 """I definitely would have prefered to go with a more flexible and scalable model approach. For the sake of conserving time safely, I've gone with a more primitive approach that satisfies the requirement.
 
 Alternative approch

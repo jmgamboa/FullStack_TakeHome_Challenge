@@ -1,24 +1,22 @@
-from django.shortcuts import render
 from api.models import Customer
 from api.serializers import CustomerSerializer
-from api.serializers import SetHighestPrioritySerializer
+from django.shortcuts import render
 from rest_framework import viewsets
 from rest_framework.decorators import api_view
-
+from rest_framework.response import Response
 
 @api_view(['POST'])
 def randomize_customer(request):
-    """
+    """s
     POST
     /randomize-customer/
     sets priority of a random customer to the highest
     """
     if request.method == 'POST':
         obj = Customer.objects.random()
-        ser = SetHighestPrioritySerializer(instance=obj)
-        if ser.is_valid(raise_exception=True):
-            ser.save()
-            return Response(ser.data)
+        obj.set_highest()
+        ser = CustomerSerializer(obj)
+        return Response(ser.data)
     return Response({"message": "method not allowed"})
 
 
@@ -40,6 +38,7 @@ class CustomerViewSet(viewsets.ModelViewSet):
     queryset = Customer.objects.all()
     serializer_class = CustomerSerializer
     permission_classes = []
+    ordering = ['priority']
     http_method_names = [
         'get',
         'put',
@@ -47,3 +46,7 @@ class CustomerViewSet(viewsets.ModelViewSet):
         'patch',
         'delete'
     ]
+
+    def filter_queryset(self, queryset):
+        queryset = super().filter_queryset(queryset)
+        return queryset.order_by('priority')
